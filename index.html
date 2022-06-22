@@ -29,10 +29,11 @@
       <!-- Add Your Audio Files, Keep "Steps" File -->
       <audio id="step" src="assets/steps.mp3" preload="auto"></audio>
 
-      <!-- <audio id="backgroundMusic" src="assets/empiregarden_track.wav" preload="auto"></audio> -->
+      <audio id="backgroundMusic" src="assets/empiregarden_track_01.mp3" preload="auto"></audio>
 
     </a-assets>
 
+    <a-sound src="assets/empiregarden_track_01.mp3" autoplay="true" position="0 2 5" loop="true"></a-sound>
     <!-- Entities -->
     <!-- <a-pointcloud id="PointCloudName" position="-20.012 4.471 2.6" rotation="181 -206.8 -179.69" src="FILL_GOES_HERE.ply" size="0.5" opacity="1" depthwrite="false" pointcloud="size:0.05;depthWrite:true"></a-pointcloud> -->
 
@@ -46,7 +47,7 @@
 
     <!-- Additional Matrial - Do Not Touch -->
     <a-entity id="stepsEnt" sound="src: assets/steps.mp3; volume: 1; loop: true; poolSize: 1;" ></a-entity>
-    <a-entity id="backgroundMusicEmpire" sound="src: assets/empiregarden_track.wav; volume: 1; loop: true; poolSize: 1;"></a-entity>
+    <!-- <a-entity id="backgroundMusicEmpire" sound="src: assets/empiregarden_track_01.mp3; volume: 1; loop: true; poolSize: 1; autoplay:1; "></a-entity> -->
     <a-plane src="#groundTexture" rotation="-90 0 0" height="100" width="100"></a-plane>
     <a-light type="ambient" color="#445451" light="groundColor: #2b2727; intensity: 0.5; penumbra: 0.58; castShadows: false" visible="" rotation="" position="0.07 0 0" scale=""></a-light>
     <a-light type="point" intensity="1" position="2 4 4"></a-light>
@@ -56,6 +57,11 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
     var walking = document.querySelector("#stepsEnt");
+    var background = document.querySelector("#backgroundMusicEmpire");
+
+    function backgroundSound() {
+      background.components.sound.playSound();
+    }
 
     function walkingSound() {
       walking.components.sound.playSound();
