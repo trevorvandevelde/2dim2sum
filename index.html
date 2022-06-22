@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--   Call this script to enable A-Frame   -->
+  <!--   Future through Memory AFrame Blank Code  -->
+  <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-pointcloud-component/dist/aframe-pointcloud-component.min.js"></script>
+  <script src="js/aframe-tooltip-component.js"></script>
+  <script src="js/link-controls.js"></script>
+</head>
+
+<body>
+  <!--   Place <a-scene> and <a-assets> inside your <body>   -->
+  <a-scene>
+    <a-assets>
+      <!-- Images for sky and ground entity -->
+      <img crossorigin="anonymous" id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
+      <img crossorigin="anonymous" id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg">
+      
+      <!-- Add your 2D Images Here -->
+      <!-- <img id="blankIMG" src="assets/IMG_0361.JPG"> -->
+      
+     
+      <!-- Add Your OBJ, MTL and PLY Files Here -->
+      <!-- <a-asset-item id="PointCloudName" src="assets/assetname.ply"></a-asset-item>
+      <a-asset-item id="OBJName" src="assets/assetname.obj"></a-asset-item>
+      <a-asset-item id="MTLName" src="assets/assetname.mtl"></a-asset-item> -->
+
+      <!-- Add Your Audio Files, Keep "Steps" File -->
+      <audio id="step" src="assets/steps.mp3" preload="auto"></audio>
+
+      <!-- <audio id="backgroundMusic" src="assets/empiregarden_track.wav" preload="auto"></audio> -->
+
+    </a-assets>
+
+    <!-- Entities -->
+    <!-- <a-pointcloud id="PointCloudName" position="-20.012 4.471 2.6" rotation="181 -206.8 -179.69" src="FILL_GOES_HERE.ply" size="0.5" opacity="1" depthwrite="false" pointcloud="size:0.05;depthWrite:true"></a-pointcloud> -->
+
+    <!-- Position Your Images -->
+    <!-- <a-image src="#blankIMG" position="6.899 3.301 -2.92" material="" geometry="width:1.5" scale="3 3 3" rotation="0 90 0"></a-image> -->
+    
+    
+    <a-pointcloud id="dimSumFront" position="-4.177 9.058 0.738" rotation="-74.94 176.013 -10.69" src="assets/dim_sum_mainroom.ply" size="0.5" opacity="1" depthwrite="false" pointcloud="size: 0.025; depthWrite: true" scale="5.046 5.046 5.046"></a-pointcloud>
+    <a-pointcloud id="dimSumBack" position="-0.583 8.784 -0.040" rotation="-88.234 -128.17 -59.416" src="assets/dim_sum_sideRoom.ply" size="0.5" opacity="1" depthwrite="false" pointcloud="size: 0.025; depthWrite: true" scale="2.318 2.318 2.318"></a-pointcloud>
+    <a-pointcloud id="dimSumExtra" position ="-4.833 -1.027 -8.854" rotation="86.517 137.854 92/048" src="assets/dim_sum_extras.ply" size=".5" opacity="1" depthwrite="false" pointcloud="size: 0.025; depthWrite: true" scale="1.464 1.464 1.464"></a-pointcloud> 
+
+    <!-- Additional Matrial - Do Not Touch -->
+    <a-entity id="stepsEnt" sound="src: assets/steps.mp3; volume: 1; loop: true; poolSize: 1;" ></a-entity>
+    <a-entity id="backgroundMusicEmpire" sound="src: assets/empiregarden_track.wav; volume: 1; loop: true; poolSize: 1;"></a-entity>
+    <a-plane src="#groundTexture" rotation="-90 0 0" height="100" width="100"></a-plane>
+    <a-light type="ambient" color="#445451" light="groundColor: #2b2727; intensity: 0.5; penumbra: 0.58; castShadows: false" visible="" rotation="" position="0.07 0 0" scale=""></a-light>
+    <a-light type="point" intensity="1" position="2 4 4"></a-light>
+    <a-sky height="2048" radius="30" src="#skyTexture" theta-length="90" width="2048"></a-sky>
+    <a-entity camera="" position="0.07657 3.78617 3.91488" wasd-controls="" rotation="4.92743703812508 2.2918311805232934 0" look-controls="" aframe-injected="" data-aframe-inspector-original-camera="" visible="" scale=".9 .9 .9"></a-entity>
+  </a-scene>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    var walking = document.querySelector("#stepsEnt");
+
+    function walkingSound() {
+      walking.components.sound.playSound();
+    }
+
+    function walkingSoundStop() {
+      walking.components.sound.pauseSound();
+    }
+
+    document.addEventListener("keydown", function (evt) {
+      // check if keys pressed are W, A, S, D and Up, Down, Left, Right
+      if (
+        evt.key == 87 ||
+        evt.key == 65 ||
+        evt.key == 83 ||
+        evt.key == 68 ||
+        evt.key == 38 ||
+        evt.key == 37 ||
+        evt.key == 39 ||
+        evt.key == 40
+      ) {
+        walkingSound();
+      }
+    });
+    document.addEventListener("keyup", function (evt) {
+      // check if keys pressed are W, A, S, D and Up, Down, Left, Right
+      if (
+        evt.key == 87 ||
+        evt.key == 65 ||
+        evt.key == 83 ||
+        evt.key == 68 ||
+        evt.key == 38 ||
+        evt.key == 37 ||
+        evt.key == 39 ||
+        evt.key == 40
+      ) {
+        walkingSoundStop();
+      }
+    });
+  });
+  </script>
+</body>
+</html>
