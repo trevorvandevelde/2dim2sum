@@ -6,6 +6,7 @@
   <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-pointcloud-component/dist/aframe-pointcloud-component.min.js"></script>
   <script src="js/aframe-tooltip-component.js"></script>
+  <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
   <script src="js/link-controls.js"></script>
 </head>
 
@@ -33,17 +34,23 @@
 
     </a-assets>
 
-    <a-sound src="assets/empiregarden_track_01.mp3" autoplay="true" position="0 2 5" loop="true"></a-sound>
+    <a-sound src="assets/empiregarden_track_02.mp3" autoplay="true" position="0 2 5" loop="true" rolloffFactor = "0"></a-sound>
     <!-- Entities -->
     <!-- <a-pointcloud id="PointCloudName" position="-20.012 4.471 2.6" rotation="181 -206.8 -179.69" src="FILL_GOES_HERE.ply" size="0.5" opacity="1" depthwrite="false" pointcloud="size:0.05;depthWrite:true"></a-pointcloud> -->
 
     <!-- Position Your Images -->
     <!-- <a-image src="#blankIMG" position="6.899 3.301 -2.92" material="" geometry="width:1.5" scale="3 3 3" rotation="0 90 0"></a-image> -->
     
+    <a-entity>
+    <a-pointcloud id="dimSumFront" position="-4.177 9.058 0.738" rotation="-74.94 176.013 -10.69" src="assets/dim_sum_mainroom.ply" size=".5" opacity="1" depthwrite="false" pointcloud="size: .08; depthWrite: true" scale="5.046 5.046 5.046">
+      <a-animation attribute="material.opacity" dur="5" dir="alternate" from="0" to="100" repeat="indefinite" begin="0">
+      </a-animation>
     
-    <a-pointcloud id="dimSumFront" position="-4.177 9.058 0.738" rotation="-74.94 176.013 -10.69" src="assets/dim_sum_mainroom.ply" size="0.5" opacity="1" depthwrite="false" pointcloud="size: 0.025; depthWrite: true" scale="5.046 5.046 5.046"></a-pointcloud>
-    <a-pointcloud id="dimSumBack" position="-0.583 8.784 -0.040" rotation="-88.234 -128.17 -59.416" src="assets/dim_sum_sideRoom.ply" size="0.5" opacity="1" depthwrite="false" pointcloud="size: 0.025; depthWrite: true" scale="2.318 2.318 2.318"></a-pointcloud>
-    <a-pointcloud id="dimSumExtra" position ="-4.833 -1.027 -8.854" rotation="86.517 137.854 92/048" src="assets/dim_sum_extras.ply" size=".5" opacity="1" depthwrite="false" pointcloud="size: 0.025; depthWrite: true" scale="1.464 1.464 1.464"></a-pointcloud> 
+      </a-pointcloud>
+    </a-entity>
+
+    <a-pointcloud id="dimSumBack" position="-0.583 8.784 -0.040" rotation="-88.234 -128.17 -59.416" src="assets/dim_sum_sideRoom.ply" size=".5" opacity="1" depthwrite="false" pointcloud="size: .08; depthWrite: true" scale="2.318 2.318 2.318"></a-pointcloud>
+    <a-pointcloud id="dimSumExtra" position ="-4.833 -1.027 -8.854" rotation="86.517 137.854 92/048" src="assets/dim_sum_extras.ply" size=".5" opacity="1" depthwrite="false" pointcloud="size: .08; depthWrite: true" scale="1.464 1.464 1.464"></a-pointcloud> 
 
     <!-- Additional Matrial - Do Not Touch -->
     <a-entity id="stepsEnt" sound="src: assets/steps.mp3; volume: 1; loop: true; poolSize: 1;" ></a-entity>
@@ -58,9 +65,17 @@
     document.addEventListener("DOMContentLoaded", function () {
     var walking = document.querySelector("#stepsEnt");
     var background = document.querySelector("#backgroundMusicEmpire");
+    var dimSumFront = document.querySelector('#dimSumFront');
+    var dimSumBack = document.querySelector('#dimSumBack');
+    var dimSumExtra = document.querySelector('#dimSumExtra');
+
 
     function backgroundSound() {
       background.components.sound.playSound();
+    }
+
+    function changeParticleSize() {
+
     }
 
     function walkingSound() {
